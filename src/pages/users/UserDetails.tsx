@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../styles/users/user-details.scss';
 import UserDetailsHeader from '../../components/UserDetailsHeader';
 import UserDetailsMain from '../../components/UserDetailsMain';
+import { baseUrl } from '../../utils/config';
 
 interface Props {}
 const UserDetails: FC<Props> = () => {
@@ -13,18 +14,15 @@ const UserDetails: FC<Props> = () => {
 
   const fetchUser = async () => {
     setLoading(true);
-    await axios
-      .get(`${import.meta.env.VITE_BASE_API_URL}/users/${id}`)
-      .then((response) => {
-        console.log(response.data, 'data');
-        setUser(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        const err = error.response.data;
-        console.log(err);
-        setLoading(false);
-      });
+    try {
+      const { data } = await axios(`${baseUrl}/users/${id}`);
+      console.log(data, 'data');
+      setUser(data);
+    } catch (error: any) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -44,7 +42,7 @@ const UserDetails: FC<Props> = () => {
       </div>
       <div>
         <UserDetailsHeader user={user} />
-        <UserDetailsMain />
+        <UserDetailsMain user={user} />
       </div>
     </section>
   );

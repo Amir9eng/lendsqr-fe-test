@@ -15,7 +15,7 @@ const tableHeaders = [
   'Status',
   '',
 ];
-const UserTable: FC<Props> = ({ users, loading }) => {
+const UsersTable: FC<Props> = ({ users, loading }) => {
   return (
     <div className="users-table">
       <table>
@@ -24,27 +24,21 @@ const UserTable: FC<Props> = ({ users, loading }) => {
             {tableHeaders.map((header, index) => {
               return (
                 <th key={index}>
-                  <>
+                  <div>
                     <span>{header}</span>
                     {header && (
                       <img src="/icons/filter-icon.svg" alt="filter-icon" />
                     )}
-                  </>
+                  </div>
                 </th>
               );
             })}
           </tr>
         </thead>
         {loading ? (
-          <tbody>
-            <tr>
-              <td>
-                <div className="loader">
-                  <img src="/images/loader.gif" alt="/loader" />
-                </div>
-              </td>
-            </tr>
-          </tbody>
+          <div className="loader">
+            <img src="/images/loader.gif" alt="/loader" />
+          </div>
         ) : (
           <tbody>
             {users.map((user: any, index: number) => {
@@ -74,4 +68,4 @@ const UserTable: FC<Props> = ({ users, loading }) => {
     </div>
   );
 };
-export default UserTable;
+export default UsersTable;
