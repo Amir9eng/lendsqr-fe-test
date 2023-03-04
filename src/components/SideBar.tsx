@@ -11,6 +11,14 @@ interface Props {
 const SideBar: FC<Props> = ({ setIsMenuOpen, isMenuOpen }) => {
   const pathname: String = useLocation().pathname;
 
+  const isRouteActive = (route: String) => {
+    if (pathname === '/dashboard' && route === '/dashboard') {
+      return true;
+    }
+    const path = route.split('/')[2];
+    return Boolean(pathname.includes(path));
+  };
+
   return (
     <div className={`side-nav ${isMenuOpen && 'nav-active'}`}>
       <div className="side-nav-header">
@@ -25,7 +33,7 @@ const SideBar: FC<Props> = ({ setIsMenuOpen, isMenuOpen }) => {
                   <Link key={item.id} to={`${item.link}`}>
                     <li
                       className={`side-nav-menu-item ${
-                        pathname === item.link && 'active'
+                        isRouteActive(item.link) && 'active'
                       }`}
                     >
                       {!item.header && <img src={item.icon} alt={item.title} />}

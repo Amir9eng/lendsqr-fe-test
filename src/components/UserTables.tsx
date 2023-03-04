@@ -35,35 +35,29 @@ const UsersTable: FC<Props> = ({ users, loading }) => {
             })}
           </tr>
         </thead>
-        {loading ? (
-          <div className="loader">
-            <img src="/images/loader.gif" alt="/loader" />
-          </div>
-        ) : (
-          <tbody>
-            {users.map((user: any, index: number) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <Link to={`/dashboard/users/${user?.id}`}>
-                      {user?.orgName}
-                    </Link>
-                  </td>
-                  <td>{user?.userName}</td>
-                  <td>{user?.email}</td>
-                  <td>{user?.phoneNumber}</td>
-                  <td>
-                    {moment(user?.createdAt).format('MMM D, YYYY h:mm a')}
-                  </td>
-                  <td>{user?.status}</td>
-                  <td>
-                    <img src="/icons/more-icon.svg" alt="more" />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        )}
+        <tbody>
+          {users.map((user: any, index: number) => {
+            return (
+              <tr key={index}>
+                <td>
+                  <Link to={`/dashboard/users/${user?.id}`}>
+                    {user?.orgName}
+                  </Link>
+                </td>
+                <td>{user?.userName}</td>
+                <td>{user?.email}</td>
+                <td>{user?.phoneNumber}</td>
+                <td>{moment(user?.createdAt).format('MMM D, YYYY h:mm a')}</td>
+                <td>
+                  <span className="status active">Active</span>
+                </td>
+                <td>
+                  <img src="/icons/more-icon.svg" alt="more" />
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
