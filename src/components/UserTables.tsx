@@ -1,8 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { UserModel } from '../utils/models';
 import Filter from './Filter';
+
 interface Props {
   users: UserModel[];
   loading: Boolean;
@@ -16,6 +18,7 @@ const tableHeaders = [
   'Status',
   '',
 ];
+
 const UsersTable: FC<Props> = ({ users, loading }) => {
   const [isFilterOpen, setIsFilterOpen] = useState<null | Number>(null);
   console.log(isFilterOpen);
@@ -41,7 +44,7 @@ const UsersTable: FC<Props> = ({ users, loading }) => {
                       />
                     )}
                   </div>
-                  {isFilterOpen === index ? <Filter /> : null}
+                  {isFilterOpen === index ? <Filter /> : ''}
                 </th>
               );
             })}
@@ -61,7 +64,7 @@ const UsersTable: FC<Props> = ({ users, loading }) => {
                 <td>{user?.phoneNumber}</td>
                 <td>{moment(user?.createdAt).format('MMM D, YYYY h:mm a')}</td>
                 <td>
-                  <span className="status active">Active</span>
+                  <span className="status active"> Active</span>
                 </td>
                 <td>
                   <img src="/icons/more-icon.svg" alt="more" />

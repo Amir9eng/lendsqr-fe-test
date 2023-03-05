@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 import UsersStats from '../../components/UserStats';
 import { baseUrl } from '../../utils/config';
 import UsersTable from '../../components/UserTables';
-import Loader from '../../components/loader';
+import Loader from '../../components/Loader';
 
 const Users = () => {
   const [loading, setLoading] = useState(false);
