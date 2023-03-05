@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { navItems } from '../utils/data';
 import { useLocation } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ interface Props {
 
 const SideBar: FC<Props> = ({ setIsMenuOpen, isMenuOpen }) => {
   const pathname: String = useLocation().pathname;
+  const navigate = useNavigate();
 
   const isRouteActive = (route: String) => {
     if (pathname === '/dashboard' && route === '/dashboard') {
@@ -55,6 +56,14 @@ const SideBar: FC<Props> = ({ setIsMenuOpen, isMenuOpen }) => {
             );
           })}
         </ul>
+        <div className="logout" onClick={() => navigate('/')}>
+          <div>
+            <img src="/icons/logout-icon.svg" alt="logout icon" />
+            <span>Logout</span>
+          </div>
+
+          <span className="version">v1.1.0</span>
+        </div>
       </div>
     </div>
   );

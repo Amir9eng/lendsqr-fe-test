@@ -5,6 +5,7 @@ import '../../styles/users/user-details.scss';
 import UserDetailsHeader from '../../components/UserDetailsHeader';
 import UserDetailsMain from '../../components/UserDetailsMain';
 import { baseUrl } from '../../utils/config';
+import Loader from '../../components/Loader';
 
 interface Props {}
 const UserDetails: FC<Props> = () => {
@@ -40,10 +41,14 @@ const UserDetails: FC<Props> = () => {
           <button type="button">ACTIVATE USER</button>
         </div>
       </div>
-      <div>
-        <UserDetailsHeader user={user} />
-        <UserDetailsMain user={user} />
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <UserDetailsHeader user={user} />
+          <UserDetailsMain user={user} />
+        </div>
+      )}
     </section>
   );
 };

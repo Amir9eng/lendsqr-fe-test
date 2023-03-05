@@ -241,3 +241,19 @@
   font-size: 14px;
   text-transform: uppercase;
 }
+.side-nav .logout {
+  border-top: 1px solid rgba(33, 64, 125, 0.3529411765);
+  padding: 10px 30px;
+  cursor: pointer;
+  color: #213f7d;
+  font-size: 16px;
+}
+.side-nav .logout div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.side-nav .logout .version {
+  font-size: 12px;
+}
