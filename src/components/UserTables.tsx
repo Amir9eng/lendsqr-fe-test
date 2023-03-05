@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { UserModel } from '../utils/models';
+import Filter from './Filter';
 interface Props {
   users: UserModel[];
   loading: Boolean;
@@ -16,6 +17,8 @@ const tableHeaders = [
   '',
 ];
 const UsersTable: FC<Props> = ({ users, loading }) => {
+  const [isFilterOpen, setIsFilterOpen] = useState<null | Number>(null);
+  console.log(isFilterOpen);
   return (
     <div className="users-table">
       <table>
@@ -27,9 +30,18 @@ const UsersTable: FC<Props> = ({ users, loading }) => {
                   <div>
                     <span>{header}</span>
                     {header && (
-                      <img src="/icons/filter-icon.svg" alt="filter-icon" />
+                      <img
+                        src="/icons/filter-icon.svg"
+                        alt="filter-icon"
+                        onClick={() =>
+                          isFilterOpen === index
+                            ? setIsFilterOpen(null)
+                            : setIsFilterOpen(index)
+                        }
+                      />
                     )}
                   </div>
+                  {isFilterOpen === index ? <Filter /> : null}
                 </th>
               );
             })}

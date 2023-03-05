@@ -4,8 +4,8 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import UsersStats from '../../components/UserStats';
 import { baseUrl } from '../../utils/config';
-import Loader from '../../components/loader';
 import UsersTable from '../../components/UserTables';
+import Loader from '../../components/loader';
 
 const Users = () => {
   const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ const Users = () => {
                   Showing{' '}
                   <span>
                     {itemOffset + itemsPerPage}{' '}
-                    <img src="/images/icons/down-arrow.svg" alt="down arrow" />
+                    <img src="/icons/down-arrow.svg" alt="down arrow" />
                   </span>{' '}
                   out of {users.length}
                 </p>

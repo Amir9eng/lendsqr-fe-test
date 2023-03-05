@@ -1,11 +1,9 @@
 import { FC, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import '../styles/dashboard/dashboard.scss';
 import TopNav from '../components/TopBar';
 import SideBar from '../components/SideBar';
-import { Outlet } from 'react-router-dom';
-
 interface Props {}
-
 const Dashboard: FC<Props> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -14,8 +12,8 @@ const Dashboard: FC<Props> = () => {
       <div className="dashboard-container">
         <SideBar setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
 
-        <div className="dashboard-main">
-          <div>
+        <div className="dashboard">
+          <div className="dashboard-main">
             <Outlet />
           </div>
         </div>
@@ -23,5 +21,4 @@ const Dashboard: FC<Props> = () => {
     </div>
   );
 };
-
 export default Dashboard;
